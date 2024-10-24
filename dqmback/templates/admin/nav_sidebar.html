@@ -1,0 +1,21 @@
+{% load i18n %}
+
+<!-- <button class="sticky toggle-nav-sidebar" id="toggle-nav-sidebar" aria-label="{% translate 'Toggle navigation' %}"></button> -->
+<nav id="nav-sidebar">
+  {% include 'admin/app_list.html' with app_list=available_apps show_changelinks=False %}
+  <div class="module">
+    <table>
+  <caption><a href="/loadfile" class="section" title="Переход на страницу заливок">Заливки</a></caption>
+<tbody style="visibility: hidden;">
+  <tr class="" style="visibility: hidden;">            
+    <th scope="row" style="visibility: hidden;"><a href="">Выходные</a></th>  
+    <td><a href="" class="">Добавить</a></td>
+  
+</tr>
+
+
+</tbody>
+</table>
+  </div>
+</nav>
+

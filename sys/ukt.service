@@ -1,0 +1,43 @@
+[Unit]
+Description=gunicorn daemon for UKT Site
+Requires=gunicorn.socket
+After=network.target
+
+
+[Service]
+User=root
+WorkingDirectory=/var/www/proj/DQM/dqmback
+# --timeout NNN             - set timeout for gunicorn to NNN sec, default - 30sec
+# --access-logfile FILENAME - log all requests to file FILENAMEA
+# --error-logfile FILENAME  - set error log file to FILENAME
+#                               Формат лог-файла кастомизируется, детали - в документации
+# --capture-output          - redirect stdout/stderr to error-logfile
+# --log-syslog              - send Gunicorn logs to Syslog
+# -log-syslog-prefix SYSLOG_PREFIX  - set Syslog Prefix
+# --log-syslog-facility SYSLOG_FACILITY - set Syslog Facility, default - user(?-да, так в документации)
+#                                         правильно пользовать local1..local7
+# --log-level=debug         - set debug logging
+#                            levels: debug info warning error critical
+#                            details: https://docs.gunicorn.org/en/stable/settings.html#logging
+# --workers N               - set number of workers to N
+# --bind unix:FILENAME      - bind to unix socket with name FILENAME
+# --bind unix:/run/gunicorn.sock
+# --bind=127.0.0.1:9000     -  bind to TCP socket 127.0.0.1:9000
+#                              default listen socket: 127.0.0.1:8000
+# --pid=PIDFILE             - user file PIDFILE as PID File
+#
+# Howto debug NGinx+Gunicorn: https://mattsegal.dev/django-gunicorn-nginx-logging.html
+#
+#ExecStart=/usr/bin/gunicorn --workers 3 --bind unix:/var/www/application.sock wsgi:app
+
+ExecStart=/var/www/proj/env/bin/gunicorn \
+          --access-logfile  /var/log/gun-ukt/gun-ukt.access.log \
+          --error-logfile /var/log/gun-ukt/gun-ukt.error.log \
+          --workers 3 \
+	  --timeout 600 \
+          --bind unix:/run/gunicorn.sock \
+          --limit-request-line 0 \
+         dqmback.wsgi:application
+ 
+[Install]
+WantedBy=multi-user.target

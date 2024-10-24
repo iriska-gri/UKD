@@ -1,0 +1,23 @@
+{% extends 'admin/change_list.html' %}
+{% block object-tools %}
+  <form action="import/" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}  
+    
+    <input type="file" name="upload" accept=".txt">
+    Либо заполнить автоматически:
+    <input type="number" id="yearinsert" name="year"   min="" max="">                
+    <input type="submit" value="Импорт" />
+  </form>
+  
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      let year = document.getElementById("yearinsert")
+      year.setAttribute("min",new Date().getFullYear())
+      year.setAttribute("max",new Date().getFullYear()+1)
+  });
+      </script>
+    {{ block.super }}
+{% endblock %}
+
+  

@@ -1,0 +1,14 @@
+[Unit]
+Description=WebSocket Daphne Service for UKD-t
+After=network.target
+
+[Service]
+Type=simple
+User=root
+#Group = nginx
+WorkingDirectory=/var/www/proj/DQM/dqmback
+ExecStart=/var/www/proj/env/bin/python /var/www/proj/env/bin/daphne  -p 8001 dqmback.asgi:application
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

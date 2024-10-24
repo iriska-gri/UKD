@@ -1,0 +1,683 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="UKD" id="Project_10fc" database="PostgreSQL" >
+	<schema name="public" >
+		<comment><![CDATA[standard public schema]]></comment>
+		<table name="accounts_fnsuser" >
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo><![CDATA[nextval('accounts_fnsuser_id_seq'::regclass)]]></defo>
+			</column>
+			<column name="password" type="varchar" length="128" decimal="0" jt="12" mandatory="y" />
+			<column name="last_login" type="timestamptz" decimal="6" jt="93" />
+			<column name="is_superuser" type="boolean" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="username" type="varchar" length="150" decimal="0" jt="12" mandatory="y" />
+			<column name="first_name" type="varchar" length="150" decimal="0" jt="12" mandatory="y" />
+			<column name="last_name" type="varchar" length="150" decimal="0" jt="12" mandatory="y" />
+			<column name="email" type="varchar" length="254" decimal="0" jt="12" mandatory="y" />
+			<column name="is_staff" type="boolean" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="is_active" type="boolean" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="date_joined" type="timestamptz" decimal="6" jt="93" mandatory="y" />
+			<column name="middle_name" type="varchar" length="150" decimal="0" jt="12" mandatory="y" />
+			<column name="photo" type="varchar" length="100" decimal="0" jt="12" mandatory="y" />
+			<index name="accounts_fnsuser_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="accounts_fnsuser_username_key" unique="UNIQUE_KEY" >
+				<column name="username" />
+			</index>
+			<index name="accounts_fnsuser_username_82a1e69c_like" unique="NORMAL" >
+				<column name="username" />
+			</index>
+		</table>
+		<table name="accounts_fnsuser_groups" >
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo><![CDATA[nextval('accounts_fnsuser_groups_id_seq'::regclass)]]></defo>
+			</column>
+			<column name="fnsuser_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="group_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<index name="accounts_fnsuser_groups_fnsuser_id_group_id_e83da3f5_uniq" unique="UNIQUE_KEY" >
+				<column name="fnsuser_id" />
+				<column name="group_id" />
+			</index>
+			<index name="accounts_fnsuser_groups_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="accounts_fnsuser_groups_fnsuser_id_cf3fca2a" unique="NORMAL" >
+				<column name="fnsuser_id" />
+			</index>
+			<index name="accounts_fnsuser_groups_group_id_29f8d279" unique="NORMAL" >
+				<column name="group_id" />
+			</index>
+			<fk name="accounts_fnsuser_gro_fnsuser_id_cf3fca2a_fk_accounts_" to_schema="public" to_table="accounts_fnsuser" options="DEFERRABLE INITIALLY DEFERRED" >
+				<fk_column name="fnsuser_id" pk="id" />
+			</fk>
+			<fk name="accounts_fnsuser_groups_group_id_29f8d279_fk_auth_group_id" to_schema="public" to_table="auth_group" options="DEFERRABLE INITIALLY DEFERRED" >
+				<fk_column name="group_id" pk="id" />
+			</fk>
+		</table>
+		<table name="accounts_fnsuser_user_permissions" >
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo><![CDATA[nextval('accounts_fnsuser_user_permissions_id_seq'::regclass)]]></defo>
+			</column>
+			<column name="fnsuser_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="permission_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<index name="accounts_fnsuser_user_pe_fnsuser_id_permission_id_6de1b8f2_uniq" unique="UNIQUE_KEY" >
+				<column name="fnsuser_id" />
+				<column name="permission_id" />
+			</index>
+			<index name="accounts_fnsuser_user_permissions_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="accounts_fnsuser_user_permissions_fnsuser_id_473cdf75" unique="NORMAL" >
+				<column name="fnsuser_id" />
+			</index>
+			<index name="accounts_fnsuser_user_permissions_permission_id_fcd0cadf" unique="NORMAL" >
+				<column name="permission_id" />
+			</index>
+			<fk name="accounts_fnsuser_use_fnsuser_id_473cdf75_fk_accounts_" to_schema="public" to_table="accounts_fnsuser" options="DEFERRABLE INITIALLY DEFERRED" >
+				<fk_column name="fnsuser_id" pk="id" />
+			</fk>
+			<fk name="accounts_fnsuser_use_permission_id_fcd0cadf_fk_auth_perm" to_schema="public" to_table="auth_permission" options="DEFERRABLE INITIALLY DEFERRED" >
+				<fk_column name="permission_id" pk="id" />
+			</fk>
+		</table>
+		<table name="accounts_initial" >
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo><![CDATA[nextval('accounts_initial_id_seq'::regclass)]]></defo>
+			</column>
+			<column name="first_name" type="varchar" length="150" decimal="0" jt="12" mandatory="y" />
+			<column name="last_name" type="varchar" length="150" decimal="0" jt="12" mandatory="y" />
+			<column name="middle_name" type="varchar" length="150" decimal="0" jt="12" mandatory="y" />
+			<index name="accounts_initial_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="auth_group" >
+			<column name="id" type="integer" length="10" decimal="0" jt="4" mandatory="y" >
+				<defo><![CDATA[nextval('auth_group_id_seq'::regclass)]]></defo>
+			</column>
+			<column name="name" type="varchar" length="150" decimal="0" jt="12" mandatory="y" />
+			<index name="auth_group_name_key" unique="UNIQUE_KEY" >
+				<column name="name" />
+			</index>
+			<index name="auth_group_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="auth_group_name_a6ea08ec_like" unique="NORMAL" >
+				<column name="name" />
+			</index>
+		</table>
+		<table name="auth_group_permissions" >
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo><![CDATA[nextval('auth_group_permissions_id_seq'::regclass)]]></defo>
+			</column>
+			<column name="group_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="permission_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<index name="auth_group_permissions_group_id_permission_id_0cd325b0_uniq" unique="UNIQUE_KEY" >
+				<column name="group_id" />
+				<column name="permission_id" />
+			</index>
+			<index name="auth_group_permissions_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="auth_group_permissions_group_id_b120cbf9" unique="NORMAL" >
+				<column name="group_id" />
+			</index>
+			<index name="auth_group_permissions_permission_id_84c5c92e" unique="NORMAL" >
+				<column name="permission_id" />
+			</index>
+			<fk name="auth_group_permissions_group_id_b120cbf9_fk_auth_group_id" to_schema="public" to_table="auth_group" options="DEFERRABLE INITIALLY DEFERRED" >
+				<fk_column name="group_id" pk="id" />
+			</fk>
+			<fk name="auth_group_permissio_permission_id_84c5c92e_fk_auth_perm" to_schema="public" to_table="auth_permission" options="DEFERRABLE INITIALLY DEFERRED" >
+				<fk_column name="permission_id" pk="id" />
+			</fk>
+		</table>
+		<table name="auth_permission" >
+			<column name="id" type="integer" length="10" decimal="0" jt="4" mandatory="y" >
+				<defo><![CDATA[nextval('auth_permission_id_seq'::regclass)]]></defo>
+			</column>
+			<column name="name" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="content_type_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="codename" type="varchar" length="100" decimal="0" jt="12" mandatory="y" />
+			<index name="auth_permission_content_type_id_codename_01ab375a_uniq" unique="UNIQUE_KEY" >
+				<column name="content_type_id" />
+				<column name="codename" />
+			</index>
+			<index name="auth_permission_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="auth_permission_content_type_id_2f476e4b" unique="NORMAL" >
+				<column name="content_type_id" />
+			</index>
+			<fk name="auth_permission_content_type_id_2f476e4b_fk_django_co" to_schema="public" to_table="django_content_type" options="DEFERRABLE INITIALLY DEFERRED" >
+				<fk_column name="content_type_id" pk="id" />
+			</fk>
+		</table>
+		<table name="buttondesc" prior="megatable" >
+			<column name="pk" type="integer" jt="4" />
+			<column name="name" type="varchar" length="100" jt="12" />
+			<index name="unq_buttondesc_pk" unique="UNIQUE_KEY" >
+				<column name="pk" />
+			</index>
+		</table>
+		<table name="django_admin_log" >
+			<column name="id" type="integer" length="10" decimal="0" jt="4" mandatory="y" >
+				<defo><![CDATA[nextval('django_admin_log_id_seq'::regclass)]]></defo>
+			</column>
+			<column name="action_time" type="timestamptz" decimal="6" jt="93" mandatory="y" />
+			<column name="object_id" type="text" decimal="0" jt="12" />
+			<column name="object_repr" type="varchar" length="200" decimal="0" jt="12" mandatory="y" />
+			<column name="action_flag" type="smallint" length="5" decimal="0" jt="5" mandatory="y" />
+			<column name="change_message" type="text" decimal="0" jt="12" mandatory="y" />
+			<column name="content_type_id" type="integer" length="10" decimal="0" jt="4" />
+			<column name="user_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<index name="django_admin_log_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="django_admin_log_content_type_id_c4bce8eb" unique="NORMAL" >
+				<column name="content_type_id" />
+			</index>
+			<index name="django_admin_log_user_id_c564eba6" unique="NORMAL" >
+				<column name="user_id" />
+			</index>
+			<constraint name="django_admin_log_action_flag_check" >
+				<string><![CDATA[(action_flag >= 0)]]></string>
+			</constraint>
+			<fk name="django_admin_log_user_id_c564eba6_fk_accounts_fnsuser_id" to_schema="public" to_table="accounts_fnsuser" options="DEFERRABLE INITIALLY DEFERRED" >
+				<fk_column name="user_id" pk="id" />
+			</fk>
+			<fk name="django_admin_log_content_type_id_c4bce8eb_fk_django_co" to_schema="public" to_table="django_content_type" options="DEFERRABLE INITIALLY DEFERRED" >
+				<fk_column name="content_type_id" pk="id" />
+			</fk>
+		</table>
+		<table name="django_content_type" >
+			<column name="id" type="integer" length="10" decimal="0" jt="4" mandatory="y" >
+				<defo><![CDATA[nextval('django_content_type_id_seq'::regclass)]]></defo>
+			</column>
+			<column name="app_label" type="varchar" length="100" decimal="0" jt="12" mandatory="y" />
+			<column name="model" type="varchar" length="100" decimal="0" jt="12" mandatory="y" />
+			<index name="django_content_type_app_label_model_76bd3d3b_uniq" unique="UNIQUE_KEY" >
+				<column name="app_label" />
+				<column name="model" />
+			</index>
+			<index name="django_content_type_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="django_migrations" >
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo><![CDATA[nextval('django_migrations_id_seq'::regclass)]]></defo>
+			</column>
+			<column name="app" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="name" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="applied" type="timestamptz" decimal="6" jt="93" mandatory="y" />
+			<index name="django_migrations_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="django_session" >
+			<column name="session_key" type="varchar" length="40" decimal="0" jt="12" mandatory="y" />
+			<column name="session_data" type="text" decimal="0" jt="12" mandatory="y" />
+			<column name="expire_date" type="timestamptz" decimal="6" jt="93" mandatory="y" />
+			<index name="django_session_pkey" unique="PRIMARY_KEY" >
+				<column name="session_key" />
+			</index>
+			<index name="django_session_expire_date_a5c62663" unique="NORMAL" >
+				<column name="expire_date" />
+			</index>
+			<index name="django_session_session_key_c0390e0f_like" unique="NORMAL" >
+				<column name="session_key" />
+			</index>
+		</table>
+		<table name="image" >
+			<column name="pk" type="integer" jt="4" />
+			<column name="path" type="integer" jt="4" />
+			<column name="name" type="varchar" length="100" jt="12" />
+			<column name="step" type="integer" jt="4" />
+			<fk name="fk_image_step" to_schema="public" to_table="step" >
+				<fk_column name="step" pk="pk" />
+			</fk>
+		</table>
+		<table name="radiobutton" >
+			<comment><![CDATA[name]]></comment>
+			<column name="pk" type="integer" jt="4" />
+			<column name="nextstep" type="integer" jt="4" />
+			<column name="prevstep" type="integer" jt="4" />
+			<column name="step" type="integer" jt="4" />
+			<column name="passport" type="integer" jt="4" />
+			<column name="butt" type="integer" jt="4" />
+			<column name="number" type="integer" jt="4" />
+			<fk name="fk_radiobutton_step" to_schema="public" to_table="step" >
+				<fk_column name="nextstep" pk="pk" />
+			</fk>
+			<fk name="fk_radiobutton_step_0" to_schema="public" to_table="step" >
+				<fk_column name="prevstep" pk="pk" />
+			</fk>
+			<fk name="fk_radiobutton_step_1" to_schema="public" to_table="step" >
+				<fk_column name="step" pk="pk" />
+			</fk>
+			<fk name="fk_radiobutton_statistic_passport" to_schema="public" to_table="statistic_passport" >
+				<fk_column name="passport" pk="id" />
+			</fk>
+			<fk name="fk_radiobutton_buttondesc" to_schema="public" to_table="buttondesc" >
+				<fk_column name="butt" pk="pk" />
+			</fk>
+		</table>
+		<table name="statistic_criticality" >
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo><![CDATA[nextval('statistic_criticality_id_seq'::regclass)]]></defo>
+			</column>
+			<column name="name" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<index name="statistic_criticality_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="statistic_descriptiondata" >
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo><![CDATA[nextval('statistic_descriptiondata_id_seq'::regclass)]]></defo>
+			</column>
+			<column name="reason_occurrence" type="text" decimal="0" jt="12" mandatory="y" />
+			<column name="detection_method" type="text" decimal="0" jt="12" mandatory="y" />
+			<column name="probability_of_occurrence" type="boolean" length="1" decimal="0" jt="-7" />
+			<column name="algorithm_creation_period" type="date" length="13" decimal="0" jt="91" />
+			<column name="selection_aproval_period" type="date" length="13" decimal="0" jt="91" />
+			<column name="date_of_formation_of_the_initial_list" type="date" length="13" decimal="0" jt="91" />
+			<column name="count_into_the_initial_list" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="description_algorithm" type="text" decimal="0" jt="12" mandatory="y" />
+			<column name="external_sources" type="text" decimal="0" jt="12" mandatory="y" />
+			<column name="reason_occurrence_new" type="varchar" length="300" decimal="0" jt="12" mandatory="y" />
+			<column name="measures_to_eliminate_causes" type="varchar" length="500" decimal="0" jt="12" mandatory="y" />
+			<column name="application_numbers" type="varchar" length="60" decimal="0" jt="12" mandatory="y" />
+			<column name="criticality_id" type="bigint" length="19" decimal="0" jt="-5" />
+			<column name="priority_id" type="bigint" length="19" decimal="0" jt="-5" />
+			<column name="responsible_id" type="bigint" length="19" decimal="0" jt="-5" />
+			<column name="sub_system_id" type="bigint" length="19" decimal="0" jt="-5" />
+			<index name="statistic_descriptiondata_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="statistic_descriptiondata_criticality_id_bc9e5c53" unique="NORMAL" >
+				<column name="criticality_id" />
+			</index>
+			<index name="statistic_descriptiondata_priority_id_100cef06" unique="NORMAL" >
+				<column name="priority_id" />
+			</index>
+			<index name="statistic_descriptiondata_responsible_id_fb4ea292" unique="NORMAL" >
+				<column name="responsible_id" />
+			</index>
+			<index name="statistic_descriptiondata_sub_system_id_231fdbda" unique="NORMAL" >
+				<column name="sub_system_id" />
+			</index>
+			<fk name="statistic_descriptio_criticality_id_bc9e5c53_fk_statistic" to_schema="public" to_table="statistic_criticality" options="DEFERRABLE INITIALLY DEFERRED" >
+				<fk_column name="criticality_id" pk="id" />
+			</fk>
+			<fk name="statistic_descriptio_priority_id_100cef06_fk_statistic" to_schema="public" to_table="statistic_priority" options="DEFERRABLE INITIALLY DEFERRED" >
+				<fk_column name="priority_id" pk="id" />
+			</fk>
+			<fk name="statistic_descriptio_responsible_id_fb4ea292_fk_statistic" to_schema="public" to_table="statistic_responsiblemonitoring" options="DEFERRABLE INITIALLY DEFERRED" >
+				<fk_column name="responsible_id" pk="id" />
+			</fk>
+			<fk name="statistic_descriptio_sub_system_id_231fdbda_fk_statistic" to_schema="public" to_table="statistic_subsystem" options="DEFERRABLE INITIALLY DEFERRED" >
+				<fk_column name="sub_system_id" pk="id" />
+			</fk>
+		</table>
+		<table name="statistic_justify" >
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo><![CDATA[nextval('statistic_justify_id_seq'::regclass)]]></defo>
+			</column>
+			<column name="description" type="text" decimal="0" jt="12" mandatory="y" />
+			<column name="date_of_justification" type="date" length="13" decimal="0" jt="91" mandatory="y" />
+			<column name="deadline_for_correction" type="date" length="13" decimal="0" jt="91" />
+			<column name="fix_status" type="boolean" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="listdate_id" type="bigint" length="19" decimal="0" jt="-5" />
+			<column name="reason_id" type="bigint" length="19" decimal="0" jt="-5" />
+			<index name="statistic_justify_listdate_id_key" unique="UNIQUE_KEY" >
+				<column name="listdate_id" />
+			</index>
+			<index name="statistic_justify_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="statistic_justify_reason_id_15c299b7" unique="NORMAL" >
+				<column name="reason_id" />
+			</index>
+			<fk name="statistic_justify_listdate_id_4908c4cb_fk_statistic" to_schema="public" to_table="statistic_listdatafbone" options="DEFERRABLE INITIALLY DEFERRED" >
+				<fk_column name="listdate_id" pk="id" />
+			</fk>
+			<fk name="statistic_justify_reason_id_15c299b7_fk_statistic" to_schema="public" to_table="statistic_reasonfornotnormalizing" options="DEFERRABLE INITIALLY DEFERRED" >
+				<fk_column name="reason_id" pk="id" />
+			</fk>
+		</table>
+		<table name="statistic_listdatafbone" >
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo><![CDATA[nextval('statistic_listdatafbone_id_seq'::regclass)]]></defo>
+			</column>
+			<column name="date_unloading" type="date" length="13" decimal="0" jt="91" mandatory="y" />
+			<column name="fid" type="varchar" length="100" decimal="0" jt="12" mandatory="y" />
+			<column name="inn" type="varchar" length="50" decimal="0" jt="12" mandatory="y" />
+			<column name="ogrn" type="varchar" length="100" decimal="0" jt="12" mandatory="y" />
+			<column name="id_error" type="varchar" length="500" decimal="0" jt="12" mandatory="y" />
+			<column name="passport_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="region_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="type_error" type="smallint" length="5" decimal="0" jt="5" />
+			<index name="statistic_listdatafbone_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="statistic_listdatafbone_passport_id_3a6bd89d" unique="NORMAL" >
+				<column name="passport_id" />
+			</index>
+			<index name="statistic_listdatafbone_region_id_84d98889" unique="NORMAL" >
+				<column name="region_id" />
+			</index>
+			<fk name="statistic_listdatafb_passport_id_3a6bd89d_fk_statistic" to_schema="public" to_table="statistic_passport" options="DEFERRABLE INITIALLY DEFERRED" >
+				<fk_column name="passport_id" pk="id" />
+			</fk>
+			<fk name="statistic_listdatafb_region_id_84d98889_fk_statistic" to_schema="public" to_table="statistic_region" options="DEFERRABLE INITIALLY DEFERRED" >
+				<fk_column name="region_id" pk="id" />
+			</fk>
+		</table>
+		<table name="statistic_passport" >
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo><![CDATA[nextval('statistic_passport_id_seq'::regclass)]]></defo>
+			</column>
+			<column name="code" type="varchar" length="50" decimal="0" jt="12" mandatory="y" />
+			<column name="name" type="varchar" length="250" decimal="0" jt="12" mandatory="y" />
+			<column name="description" type="text" decimal="0" jt="12" mandatory="y" />
+			<column name="code_name_process" type="text" decimal="0" jt="12" mandatory="y" />
+			<column name="date_of_including_of_the_initial_list" type="date" length="13" decimal="0" jt="91" />
+			<column name="date_of_deactivate" type="date" length="13" decimal="0" jt="91" />
+			<column name="mode" type="boolean" length="1" decimal="0" jt="-7" />
+			<column name="description_data_id" type="bigint" length="19" decimal="0" jt="-5" />
+			<index name="statistic_passport_description_data_id_key" unique="UNIQUE_KEY" >
+				<column name="description_data_id" />
+			</index>
+			<index name="statistic_passport_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="statistic_passport_description_data_id_976fb724_fk_statistic" to_schema="public" to_table="statistic_descriptiondata" options="DEFERRABLE INITIALLY DEFERRED" >
+				<fk_column name="description_data_id" pk="id" />
+			</fk>
+		</table>
+		<table name="statistic_priority" >
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo><![CDATA[nextval('statistic_priority_id_seq'::regclass)]]></defo>
+			</column>
+			<column name="name" type="varchar" length="100" decimal="0" jt="12" mandatory="y" />
+			<index name="statistic_priority_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="statistic_reasonfornotnormalizing" >
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo><![CDATA[nextval('statistic_reasonfornotnormalizing_id_seq'::regclass)]]></defo>
+			</column>
+			<column name="name" type="varchar" length="200" decimal="0" jt="12" mandatory="y" />
+			<column name="number" type="integer" length="10" decimal="0" jt="4" />
+			<index name="statistic_reasonfornotnormalizing_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="statistic_region" >
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo><![CDATA[nextval('statistic_region_id_seq'::regclass)]]></defo>
+			</column>
+			<column name="tax_code" type="varchar" length="5" decimal="0" jt="12" mandatory="y" />
+			<column name="name" type="varchar" length="150" decimal="0" jt="12" mandatory="y" />
+			<index name="statistic_region_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="statistic_responsiblemonitoring" >
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo><![CDATA[nextval('statistic_responsiblemonitoring_id_seq'::regclass)]]></defo>
+			</column>
+			<column name="name" type="varchar" length="100" decimal="0" jt="12" mandatory="y" />
+			<index name="statistic_responsiblemonitoring_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="statistic_subsystem" >
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo><![CDATA[nextval('statistic_subsystem_id_seq'::regclass)]]></defo>
+			</column>
+			<column name="name" type="varchar" length="100" decimal="0" jt="12" mandatory="y" />
+			<index name="statistic_subsystem_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="step" spec="" >
+			<column name="pk" type="integer" jt="4" />
+			<column name="name" type="varchar" length="100" jt="12" />
+			<column name="description" type="varchar" jt="12" />
+			<index name="unq_step_pk" unique="UNIQUE_KEY" >
+				<column name="pk" />
+			</index>
+		</table>
+		<sequence name="accounts_fnsuser_groups_id_seq" options="START WITH 1 INCREMENT BY 1" />
+		<sequence name="accounts_fnsuser_id_seq" options="START WITH 1 INCREMENT BY 1" />
+		<sequence name="accounts_fnsuser_user_permissions_id_seq" options="START WITH 1 INCREMENT BY 1" />
+		<sequence name="accounts_initial_id_seq" options="START WITH 1 INCREMENT BY 1" />
+		<sequence name="auth_group_id_seq" options="START WITH 1 INCREMENT BY 1" />
+		<sequence name="auth_group_permissions_id_seq" options="START WITH 1 INCREMENT BY 1" />
+		<sequence name="auth_permission_id_seq" options="START WITH 1 INCREMENT BY 1" />
+		<sequence name="django_admin_log_id_seq" options="START WITH 1 INCREMENT BY 1" />
+		<sequence name="django_content_type_id_seq" options="START WITH 1 INCREMENT BY 1" />
+		<sequence name="django_migrations_id_seq" options="START WITH 1 INCREMENT BY 1" />
+		<sequence name="statistic_criticality_id_seq" options="START WITH 1 INCREMENT BY 1" />
+		<sequence name="statistic_descriptiondata_id_seq" options="START WITH 1 INCREMENT BY 1" />
+		<sequence name="statistic_justify_id_seq" options="START WITH 1 INCREMENT BY 1" />
+		<sequence name="statistic_listdatafbone_id_seq" options="START WITH 1 INCREMENT BY 1" />
+		<sequence name="statistic_passport_id_seq" options="START WITH 1 INCREMENT BY 1" />
+		<sequence name="statistic_priority_id_seq" options="START WITH 1 INCREMENT BY 1" />
+		<sequence name="statistic_reasonfornotnormalizing_id_seq" options="START WITH 1 INCREMENT BY 1" />
+		<sequence name="statistic_region_id_seq" options="START WITH 1 INCREMENT BY 1" />
+		<sequence name="statistic_responsiblemonitoring_id_seq" options="START WITH 1 INCREMENT BY 1" />
+		<sequence name="statistic_subsystem_id_seq" options="START WITH 1 INCREMENT BY 1" />
+	</schema>
+	<connector name="UKD" database="PostgreSQL" driver_class="org.postgresql.Driver" driver_jar="postgresql-42.2.23.jar" driver_desc="Standard" host="localhost" port="5432" instance="UKD" user="pgsup" passwd="ZWNkYTdmNWVjM2VlYzFhZjVjM2YyZWM4ZGFiNjAyNzQ3MmNhN2Y1ZjRjZmFmYTg3MjA=" />
+	<layout name="Layout with Tools" id="Layout_da4" show_column_type="y" show_relation="columns" >
+		<entity schema="public" name="accounts_fnsuser" color="BED3F4" x="80" y="208" />
+		<entity schema="public" name="accounts_fnsuser_groups" color="BED3F4" x="512" y="464" />
+		<entity schema="public" name="accounts_fnsuser_user_permissions" color="BED3F4" x="288" y="80" />
+		<entity schema="public" name="accounts_initial" color="BED3F4" x="48" y="64" />
+		<entity schema="public" name="auth_group" color="BED3F4" x="768" y="464" />
+		<entity schema="public" name="auth_group_permissions" color="BED3F4" x="704" y="224" />
+		<entity schema="public" name="auth_permission" color="BED3F4" x="400" y="240" />
+		<entity schema="public" name="buttondesc" color="C1D8EE" x="1872" y="1184" />
+		<entity schema="public" name="django_admin_log" color="C7F4BE" x="64" y="672" />
+		<entity schema="public" name="django_content_type" color="C7F4BE" x="352" y="672" />
+		<entity schema="public" name="django_migrations" color="C7F4BE" x="352" y="944" />
+		<entity schema="public" name="django_session" color="C7F4BE" x="64" y="944" />
+		<entity schema="public" name="image" color="C1D8EE" x="672" y="1008" />
+		<entity schema="public" name="radiobutton" color="C1D8EE" x="1392" y="1008" />
+		<entity schema="public" name="statistic_criticality" color="F4DDBE" x="1648" y="672" />
+		<entity schema="public" name="statistic_descriptiondata" color="F4DDBE" x="1136" y="336" />
+		<entity schema="public" name="statistic_justify" color="BEBEF4" x="1872" y="208" />
+		<entity schema="public" name="statistic_listdatafbone" color="BEBEF4" x="1552" y="208" />
+		<entity schema="public" name="statistic_passport" color="F4DDBE" x="1280" y="768" />
+		<entity schema="public" name="statistic_priority" color="F4DDBE" x="736" y="672" />
+		<entity schema="public" name="statistic_reasonfornotnormalizing" color="BEBEF4" x="1824" y="512" />
+		<entity schema="public" name="statistic_region" color="F4DDBE" x="1552" y="48" />
+		<entity schema="public" name="statistic_responsiblemonitoring" color="F4DDBE" x="1328" y="672" />
+		<entity schema="public" name="statistic_subsystem" color="F4DDBE" x="896" y="848" />
+		<entity schema="public" name="step" color="C1D8EE" x="960" y="1024" />
+		<script name="Sample SQL Editor" id="Editor_1539" language="SQL" >
+			<string><![CDATA[SELECT id, reason_occurrence, detection_method, probability_of_occurrence, algorithm_creation_period, selection_aproval_period, 
+	date_of_formation_of_the_initial_list, count_into_the_initial_list, description_algorithm, external_sources, reason_occurrence_new, 
+	measures_to_eliminate_causes, application_numbers, criticality_id, priority_id, responsible_id, sub_system_id
+FROM
+	"public".statistic_descriptiondata a;]]></string>
+		</script>
+		<query id="Query_3be" name="Sample Query Builder" >
+			<query_table schema="public" name="statistic_descriptiondata" alias="sd" x="48" y="48" >
+				<column name="id" />
+				<column name="reason_occurrence" />
+				<column name="detection_method" />
+				<column name="probability_of_occurrence" />
+				<column name="algorithm_creation_period" />
+				<column name="selection_aproval_period" />
+				<column name="date_of_formation_of_the_initial_list" />
+				<column name="count_into_the_initial_list" />
+				<column name="description_algorithm" />
+				<column name="external_sources" />
+				<column name="reason_occurrence_new" />
+				<column name="measures_to_eliminate_causes" />
+				<column name="application_numbers" />
+				<column name="criticality_id" />
+				<column name="priority_id" />
+				<column name="responsible_id" />
+				<column name="sub_system_id" />
+				<query_table schema="public" name="statistic_passport" alias="sp" x="368" y="48" fk="statistic_passport_description_data_id_976fb724_fk_statistic" type="Inner Join" >
+					<column name="id" />
+					<column name="code" />
+					<column name="name" />
+					<column name="description" />
+					<column name="code_name_process" />
+					<column name="date_of_including_of_the_initial_list" />
+					<column name="date_of_deactivate" />
+					<column name="mode" />
+					<column name="description_data_id" />
+					<query_table schema="public" name="statistic_listdatafbone" alias="sl" x="688" y="48" fk="statistic_listdatafb_passport_id_3a6bd89d_fk_statistic" type="Inner Join" >
+						<column name="id" />
+						<column name="date_unloading" />
+						<column name="fid" />
+						<column name="inn" />
+						<column name="ogrn" />
+						<column name="id_error" />
+						<column name="passport_id" />
+						<column name="region_id" />
+						<column name="type_error" />
+					</query_table>
+				</query_table>
+			</query_table>
+		</query>
+		<form name="Sample Report" id="Report_1e7e" template="Page" css="container-fluid" view="frame" >
+			<var name="samplePageNumber" type="4" value="0" mandatory="n" />
+			<var name="sampleRecordsPerPage" type="4" value="100" mandatory="n" />
+			<body name="Body" template="Grid" pos="0,0,0,0,f,f" layout="{{-2,-2,-2,-2,-1},{-2,-2,-2}}" scroll="n" html="n" >
+				<cell type="label" name="sample" template="H3" pos="0,0,1,0,l,c" />
+				<tableview name="sample" template="Table" css="table table-striped table-bordered table-sm table-hover" pos="0,1,4,1,f,f" layout="{{-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2},{-2,-2}}" scroll="n" html="n" header_rows="1" >
+					<form_script type="DataSource" language="SQL" >
+						<var name="id" type="-5" />
+						<var name="reason_occurrence" type="-1" />
+						<var name="detection_method" type="-1" />
+						<var name="probability_of_occurrence" type="-7" />
+						<var name="algorithm_creation_period" type="91" />
+						<var name="selection_aproval_period" type="91" />
+						<var name="date_of_formation_of_the_initial_list" type="91" />
+						<var name="count_into_the_initial_list" type="-1" />
+						<var name="description_algorithm" type="-1" />
+						<var name="external_sources" type="-1" />
+						<var name="reason_occurrence_new" type="-1" />
+						<var name="measures_to_eliminate_causes" type="-1" />
+						<var name="application_numbers" type="-1" />
+						<var name="criticality_id" type="-5" />
+						<var name="priority_id" type="-5" />
+						<var name="responsible_id" type="-5" />
+						<var name="sub_system_id" type="-5" />
+						<script ><![CDATA[SELECT * FROM "public".statistic_descriptiondata]]></script>
+					</form_script>
+					<cell type="label" name="id" pos="0,0,0,0,c,c" />
+					<cell type="label" name="reason_occurrence" pos="1,0,1,0,c,c" />
+					<cell type="label" name="detection_method" pos="2,0,2,0,c,c" />
+					<cell type="label" name="probability_of_occurrence" pos="3,0,3,0,c,c" />
+					<cell type="label" name="algorithm_creation_period" pos="4,0,4,0,c,c" />
+					<cell type="label" name="selection_aproval_period" pos="5,0,5,0,c,c" />
+					<cell type="label" name="date_of_formation_of_the_initial_list" pos="6,0,6,0,c,c" />
+					<cell type="label" name="count_into_the_initial_list" pos="7,0,7,0,c,c" />
+					<cell type="label" name="description_algorithm" pos="8,0,8,0,c,c" />
+					<cell type="label" name="external_sources" pos="9,0,9,0,c,c" />
+					<cell type="label" name="reason_occurrence_new" pos="10,0,10,0,c,c" />
+					<cell type="label" name="measures_to_eliminate_causes" pos="11,0,11,0,c,c" />
+					<cell type="label" name="application_numbers" pos="12,0,12,0,c,c" />
+					<cell type="label" name="criticality_id" pos="13,0,13,0,c,c" />
+					<cell type="label" name="priority_id" pos="14,0,14,0,c,c" />
+					<cell type="label" name="responsible_id" pos="15,0,15,0,c,c" />
+					<cell type="label" name="sub_system_id" pos="16,0,16,0,c,c" />
+					<cell type="label" name="${id}" template="Plain" pos="0,1,0,1,l,c" />
+					<cell type="label" name="${reason_occurrence}" template="Plain" pos="1,1,1,1,l,c" />
+					<cell type="label" name="${detection_method}" template="Plain" pos="2,1,2,1,l,c" />
+					<cell type="label" name="${probability_of_occurrence}" template="Plain" pos="3,1,3,1,l,c" />
+					<cell type="label" name="${algorithm_creation_period}" template="Plain" pos="4,1,4,1,l,c" />
+					<cell type="label" name="${selection_aproval_period}" template="Plain" pos="5,1,5,1,l,c" />
+					<cell type="label" name="${date_of_formation_of_the_initial_list}" template="Plain" pos="6,1,6,1,l,c" />
+					<cell type="label" name="${count_into_the_initial_list}" template="Plain" pos="7,1,7,1,l,c" />
+					<cell type="label" name="${description_algorithm}" template="Plain" pos="8,1,8,1,l,c" />
+					<cell type="label" name="${external_sources}" template="Plain" pos="9,1,9,1,l,c" />
+					<cell type="label" name="${reason_occurrence_new}" template="Plain" pos="10,1,10,1,l,c" />
+					<cell type="label" name="${measures_to_eliminate_causes}" template="Plain" pos="11,1,11,1,l,c" />
+					<cell type="label" name="${application_numbers}" template="Plain" pos="12,1,12,1,l,c" />
+					<cell type="label" name="${criticality_id}" template="Plain" pos="13,1,13,1,l,c" />
+					<cell type="label" name="${priority_id}" template="Plain" pos="14,1,14,1,l,c" />
+					<cell type="label" name="${responsible_id}" template="Plain" pos="15,1,15,1,l,c" />
+					<cell type="label" name="${sub_system_id}" template="Plain" pos="16,1,16,1,l,c" />
+				</tableview>
+				<cell type="href" name="" disabled="${samplePageNumber&lt;1}" pos="0,2,0,2,l,c" glyph="FA-ANGLE_DOUBLE_LEFT" ref_id="Report_1e7e" >
+					<var name="samplePageNumber" value="0" />
+				</cell>
+				<cell type="href" name="" disabled="${samplePageNumber&lt;1}" pos="1,2,1,2,l,c" glyph="FA-ANGLE_LEFT" ref_id="Report_1e7e" >
+					<var name="samplePageNumber" value="${Math.max(0,samplePageNumber-1)}" />
+				</cell>
+				<cell type="label" name="Page ${samplePageNumber+1}" pos="2,2,2,2,l,c" />
+				<cell type="href" name="" disabled="${!sampleHasNextPage}" pos="3,2,3,2,l,c" glyph="FA-ANGLE_RIGHT" ref_id="Report_1e7e" >
+					<var name="samplePageNumber" value="${( samplePageNumber+1 )}" />
+				</cell>
+			</body>
+		</form>
+	</layout>
+	<layout name="Main Layout" id="Layout_b24" show_relation="columns" >
+		<entity schema="public" name="accounts_fnsuser" color="BED3F4" x="272" y="176" />
+		<entity schema="public" name="accounts_fnsuser_groups" color="BED3F4" x="496" y="528" />
+		<entity schema="public" name="accounts_fnsuser_user_permissions" color="BED3F4" x="176" y="528" />
+		<entity schema="public" name="accounts_initial" color="BED3F4" x="48" y="320" />
+		<entity schema="public" name="auth_group" color="BED3F4" x="752" y="528" />
+		<entity schema="public" name="auth_group_permissions" color="BED3F4" x="928" y="528" />
+		<entity schema="public" name="auth_permission" color="BED3F4" x="496" y="176" />
+		<entity schema="public" name="django_admin_log" color="C7F4BE" x="48" y="768" />
+		<entity schema="public" name="django_content_type" color="C7F4BE" x="288" y="768" />
+		<entity schema="public" name="django_migrations" color="C7F4BE" x="288" y="1040" />
+		<entity schema="public" name="django_session" color="C7F4BE" x="48" y="1040" />
+		<entity schema="public" name="statistic_criticality" color="F4DDBE" x="1792" y="592" />
+		<entity schema="public" name="statistic_descriptiondata" color="F4DDBE" x="1440" y="176" />
+		<entity schema="public" name="statistic_justify" color="BEBEF4" x="2624" y="176" />
+		<entity schema="public" name="statistic_listdatafbone" color="BEBEF4" x="2384" y="176" />
+		<entity schema="public" name="statistic_passport" color="F4DDBE" x="1792" y="176" />
+		<entity schema="public" name="statistic_priority" color="F4DDBE" x="1232" y="416" />
+		<entity schema="public" name="statistic_reasonfornotnormalizing" color="BEBEF4" x="2912" y="176" />
+		<entity schema="public" name="statistic_region" color="F4DDBE" x="2144" y="176" />
+		<entity schema="public" name="statistic_responsiblemonitoring" color="F4DDBE" x="1440" y="592" />
+		<entity schema="public" name="statistic_subsystem" color="F4DDBE" x="1216" y="592" />
+		<callout x="1440" y="80" pointer="Round" >
+			<comment><![CDATA[Double-click table headers, columns, or foreign keys to edit. 
+Create multiple layouts (diagrams) with the same or different tables. 
+Saving the model to file will also save the layouts.]]></comment>
+		</callout>
+		<group name="django_admin_log" color="EEF7EC" >
+			<entity schema="public" name="django_admin_log" />
+			<entity schema="public" name="django_content_type" />
+			<entity schema="public" name="django_migrations" />
+			<entity schema="public" name="django_session" />
+		</group>
+		<group name="statistic_listdatafbone" color="ECECF7" >
+			<entity schema="public" name="statistic_listdatafbone" />
+			<entity schema="public" name="statistic_justify" />
+			<entity schema="public" name="statistic_reasonfornotnormalizing" />
+		</group>
+		<group name="statistic_descriptiondata" color="F7F2EC" >
+			<entity schema="public" name="statistic_descriptiondata" />
+			<entity schema="public" name="statistic_passport" />
+			<entity schema="public" name="statistic_criticality" />
+			<entity schema="public" name="statistic_responsiblemonitoring" />
+			<entity schema="public" name="statistic_subsystem" />
+			<entity schema="public" name="statistic_region" />
+			<entity schema="public" name="statistic_priority" />
+		</group>
+		<group name="accounts_fnsuser" color="ECF0F7" >
+			<entity schema="public" name="accounts_fnsuser" />
+			<entity schema="public" name="auth_permission" />
+			<entity schema="public" name="accounts_fnsuser_groups" />
+			<entity schema="public" name="auth_group" />
+			<entity schema="public" name="auth_group_permissions" />
+			<entity schema="public" name="accounts_fnsuser_user_permissions" />
+			<entity schema="public" name="accounts_initial" />
+		</group>
+	</layout>
+</project>

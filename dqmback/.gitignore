@@ -1,0 +1,11 @@
+﻿/env/
+__pycache__
+dqmback
+migrations
+assets
+media
+static/ckeditor
+static/rest_framework
+manage.py
+.vscode
+logging

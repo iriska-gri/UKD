@@ -1,0 +1,253 @@
+/* VARIABLE DEFINITIONS */
+:root {
+    --primary: #43425d;
+    --secondary: #516a54;
+    --accent: #928f8f;
+    --primary-fg: #ffffff;
+  
+    --body-fg: #333;
+    --body-bg: #fafafa;
+    --body-quiet-color: #666;
+    --body-loud-color: #000;
+  
+    --header-color: rgb(230, 230, 230);
+    --header-branding-color: var(--accent);
+    --header-bg: var(--secondary);
+    --header-link-color: var(--primary-fg);
+  
+    --breadcrumbs-fg: #c4dce8;
+    --breadcrumbs-link-fg: var(--body-bg);
+    --breadcrumbs-bg: var(--primary);
+  
+    --link-fg: #447e9b;
+    --link-hover-color: #036;
+    --link-selected-fg: #5b80b2;
+  
+    --hairline-color: #e8e8e8;
+    --border-color: #ccc;
+  
+    --error-fg: #ba2121;
+  
+    --message-success-bg: #dfd;
+    --message-warning-bg: #ffc;
+    --message-error-bg: #ffefef;
+  
+    --darkened-bg: #f8f8f8; /* A bit darker than --body-bg */
+    --selected-bg: #e4e4e4; /* E.g. selected table cells */
+    --selected-row: #ffc;
+  
+    --button-fg: #fff;
+    --button-bg: var(--primary);
+    --button-hover-bg: #52516a;
+    --default-button-bg: var(--secondary);
+    --default-button-hover-bg: #205067;
+    --close-button-bg: #888; /* Previously #bbb, contrast 1.92 */
+    --close-button-hover-bg: #747474;
+    --delete-button-bg: #911d1d;
+    --delete-button-hover-bg: #a41515;
+  
+    --object-tools-fg: var(--button-fg);
+    --object-tools-bg: var(--close-button-bg);
+    --object-tools-hover-bg: var(--close-button-hover-bg);
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --primary: #264b5d;
+      --primary-fg: #eee;
+  
+      --body-fg: #eeeeee;
+      --body-bg: #121212;
+      --body-quiet-color: #e0e0e0;
+      --body-loud-color: #ffffff;
+  
+      --breadcrumbs-link-fg: #e0e0e0;
+      --breadcrumbs-bg: var(--primary);
+  
+      --link-fg: #81d4fa;
+      --link-hover-color: #4ac1f7;
+      --link-selected-fg: #6f94c6;
+  
+      --hairline-color: #272727;
+      --border-color: #353535;
+  
+      --error-fg: #e35f5f;
+      --message-success-bg: #006b1b;
+      --message-warning-bg: #583305;
+      --message-error-bg: #570808;
+  
+      --darkened-bg: #212121;
+      --selected-bg: #1b1b1b;
+      --selected-row: #00363a;
+  
+      --close-button-bg: #333333;
+      --close-button-hover-bg: #666666;
+    }
+  }
+
+/* Блок с приветсвием */
+
+
+
+.module .filtered, .myrowhead, #changelist-filter h2,
+div.breadcrumbs, #header, .module caption, .login 
+{
+    background: var(--primary);
+}
+
+.module {
+    margin-bottom: 0 !important;
+}
+.myrowhead {
+    height: 4vh;
+}
+
+
+
+/* #oneColOne, #oneColTwo, #TwoColOne {
+    padding-top: 0.6%;
+} */
+
+#oneColTwo a, .myrowhead, #header, .module caption {
+    color:#e9e8ec; 
+}
+
+#oneColTwo a:hover {
+    color:#a8a7a7; 
+}
+.colh{
+    max-height: 92vh;
+}
+
+#ThreeColOne {
+    overflow-y: auto;
+    padding-left: 0;
+    padding-right: 0;
+}
+#ThreeColTwo {
+    overflow-y: auto;
+    
+}
+/* Блок с приветсвием */
+
+/* Изменение из старых стилей */
+
+#myh1 {
+    font-size: calc(0.100rem + 1.5vw);
+    margin-top: 18px;
+}
+
+#mycontainer {
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+div.breadcrumbs {
+    padding: 0px 0px;
+}
+
+.object-tools {
+    margin-top: -35px;
+}
+
+#nav-sidebar {
+    margin-left: 0;
+    border-top: 20px solid transparent;
+}
+
+table {
+    caption-side: inherit !important;
+}
+
+#header, .module caption {
+margin-top: 1px;
+}
+
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+    padding: 6px 15px;
+}
+
+/* Выделение нажатого пункта */
+#nav-sidebar .current-model {
+    background: #e4e4e4; 
+}
+
+#id_connectedPassport.column-checkbox {
+
+    overflow: auto;
+    display: flex;
+    gap: 19px;
+    flex-wrap: wrap;
+}
+
+#id_connectedPassport li {
+     
+        min-width: 100px;
+  
+}
+
+button, input, optgroup, select, textarea {
+    font-size: revert !important;
+
+}
+
+
+#changelist-filter {
+    margin: 44px 0 0 30px !important;
+}
+
+#toolbar #searchbar {
+    height: 31px !important;
+}
+
+/* Страница Начало */
+.dashboard #ThreeColTwo #content-main{
+    width: 40%;
+}
+
+.dashboard #ThreeColTwo #content-related {
+    margin-right: 38%;
+}
+
+/* .dashboard #FiveColOne {
+    margin-left: 9%;
+} */
+/* Страница регистрации */
+
+.submit-row a.deletelink {
+    display: block;
+    background: var(--delete-button-bg);
+    border-radius: 4px;
+    padding: 9px 15px;
+    height: 35px !important;
+    line-height: 15px;
+    color: var(--button-fg);
+}
+
+input[type=submit].default, .submit-row input.default {
+    float: right;
+    border: none;
+    font-weight: 400;
+    background: var(--default-button-bg) !important;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+   
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    background: #43425D; 
+  
+}
+::-webkit-scrollbar-thumb:window-inactive {
+    background: #43425D; 
+}
